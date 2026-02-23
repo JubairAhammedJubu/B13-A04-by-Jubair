@@ -22,6 +22,7 @@ function calculateCount() {
 
 calculateCount();
 
+// Toggle filter buttons
 function toggleStyle(id) {
   // Reset all buttons
   allFilterBtn.classList.add("bg-white", "text-black");
@@ -35,9 +36,11 @@ function toggleStyle(id) {
   const selected = document.getElementById(id);
   currentStatus = id;
 
+  // Apply active styles
   selected.classList.remove("bg-white", "text-black");
   selected.classList.add("bg-blue-500", "text-white");
 
+  // Show/hide filtered section
   if (id === "interview-filter-btn") {
     allCardSection.classList.add("hidden");
     filterSection.classList.remove("hidden");
@@ -54,7 +57,7 @@ function toggleStyle(id) {
 
 // Event delegation
 mainContainer.addEventListener("click", function (event) {
-  // Interview Button
+  // Interview
 
   if (event.target.classList.contains("interview-btn")) {
     const parentNode = event.target.parentNode.parentNode;
@@ -66,14 +69,19 @@ mainContainer.addEventListener("click", function (event) {
     const statusButton = parentNode.querySelector("#status");
     if (statusButton) statusButton.innerText = "Interview";
 
+    const [location, jobType, salary] = timesalary.split(" • ");
+
     const jobInfo = {
       companyName,
       jobRole,
-      timesalary,
+      location,
+      jobType,
+      salary,
       status: "Interview",
       details,
     };
 
+    // Check if already exists in interviewList
     const jobExist = interviewList.find(
       (item) => item.companyName === jobInfo.companyName,
     );
@@ -82,10 +90,12 @@ mainContainer.addEventListener("click", function (event) {
       interviewList.push(jobInfo);
     }
 
+    // Remove from rejected list
     rejectedList = rejectedList.filter(
       (item) => item.companyName !== jobInfo.companyName,
     );
 
+    // If currently in Rejected tab → re-render
     if (currentStatus === "rejected-filter-btn") {
       renderRejected();
     }
@@ -93,7 +103,7 @@ mainContainer.addEventListener("click", function (event) {
     calculateCount();
   }
 
-  // Rejected Button
+  // REJECTED BUTTON CLICK
   else if (event.target.classList.contains("rejected-btn")) {
     const parentNode = event.target.parentNode.parentNode;
 
@@ -104,14 +114,19 @@ mainContainer.addEventListener("click", function (event) {
     const statusButton = parentNode.querySelector("#status");
     if (statusButton) statusButton.innerText = "Rejected";
 
+    const [location, jobType, salary] = timesalary.split(" • ");
+
     const jobInfo = {
       companyName,
       jobRole,
-      timesalary,
+      location,
+      jobType,
+      salary,
       status: "Rejected",
       details,
     };
 
+    // Check if already exists in rejectedList
     const jobExist = rejectedList.find(
       (item) => item.companyName === jobInfo.companyName,
     );
@@ -120,10 +135,12 @@ mainContainer.addEventListener("click", function (event) {
       rejectedList.push(jobInfo);
     }
 
+    // Remove from interview list
     interviewList = interviewList.filter(
       (item) => item.companyName !== jobInfo.companyName,
     );
 
+    // If currently in Interview tab → re-render
     if (currentStatus === "interview-filter-btn") {
       renderInterview();
     }
@@ -131,3 +148,73 @@ mainContainer.addEventListener("click", function (event) {
     calculateCount();
   }
 });
+
+// Render Interview cards
+function renderInterview() {
+  filterSection.innerHTML = "";
+  for (let job of interviewList) {
+    const div = document.createElement("div");
+    div.className =
+      "card flex justify-between border border-gray-200 p-6 mb-6 rounded-lg";
+    div.innerHTML = `
+      <div class="space-y-5">
+        <div>
+          <p class="companyName text-lg text-[#002C5C] font-semibold leading-6">${job.companyName}</p>
+          <p class="jobRole mt-1.5 text-slate-500">${job.jobRole}</p>
+        </div>
+        <div class="text-slate-500">
+          <p class="timesalary">
+            ${job.location} <span class="mx-1.5">•</span> ${job.jobType} <span class="mx-1.5">•</span> ${job.salary}
+          </p>
+        </div>
+        <div>
+          <button class="bg-[#EEF4FF] text-[#002C5C] h-9 w-28 text-sm font-medium rounded-sm">${job.status} </button>
+          <p class="notes mt-2 text-[#002C5C]">${job.details}</p>
+        </div>
+        <div class="flex gap-5">
+          <button class="interview-btn text-sm font-semibold leading-6 text-emerald-500 h-9 w-25 border border-emerald-500 rounded-sm">Interview</button>
+          <button class="rejected-btn text-sm font-semibold leading-6 text-red-500 h-9 w-25 border border-red-500 rounded-sm">Rejected</button>
+        </div>
+      </div>
+      <div class="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center">
+        <button class="btn-delete"><i class="fa-regular fa-trash-can text-slate-500"></i></button>
+      </div>
+    `;
+    filterSection.appendChild(div);
+  }
+}
+
+// Render Rejected cards
+function renderRejected() {
+  filterSection.innerHTML = "";
+  for (let job of rejectedList) {
+    const div = document.createElement("div");
+    div.className =
+      "card flex justify-between border border-gray-200 p-6 mb-6 rounded-lg";
+    div.innerHTML = `
+      <div class="space-y-5">
+        <div>
+          <p class="companyName text-lg text-[#002C5C] font-semibold leading-6">${job.companyName}</p>
+          <p class="jobRole mt-1.5 text-slate-500">${job.jobRole}</p>
+        </div>
+        <div class="text-slate-500">
+          <p class="timesalary">
+            ${job.location} <span class="mx-1.5">•</span> ${job.jobType} <span class="mx-1.5">•</span> ${job.salary}
+          </p>
+        </div>
+        <div>
+          <button class="bg-[#EEF4FF] text-[#002C5C] h-9 w-28 text-sm font-medium rounded-sm">${job.status}</button>
+          <p class="notes mt-2 text-[#002C5C]">${job.details}</p>
+        </div>
+        <div class="flex gap-5">
+          <button class="interview-btn text-sm font-semibold leading-6 text-emerald-500 h-9 w-25 border border-emerald-500 rounded-sm">Interview</button>
+          <button class="rejected-btn text-sm font-semibold leading-6 text-red-500 h-9 w-25 border border-red-500 rounded-sm">Rejected</button>
+        </div>
+      </div>
+      <div class="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center">
+        <button class="btn-delete"><i class="fa-regular fa-trash-can text-slate-500"></i></button>
+      </div>
+    `;
+    filterSection.appendChild(div);
+  }
+}
