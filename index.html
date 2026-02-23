@@ -30,10 +30,10 @@
     </style>
   </head>
 
-  <body class="bg-[#f8fafc] w-[1110px] mx-auto">
+  <body class="bg-[#f8fafc] lg:w-[1110px] w-[350px] mx-auto">
     <header class="mx-auto border-b-2 border-gray-200">
-      <h1 class="text-4xl font-bold mt-14">Job Application Tracker</h1>
-      <div class="grid grid-cols-3 gap-8 my-7">
+      <h1 class="lg:text-4xl text-2xl font-bold mt-14">Job Application Tracker</h1>
+      <div class="grid grid-cols-3 lg:gap-8 gap-3 my-7">
         <div class="bg-white border border-gray-200 rounded-lg p-5">
           <p class="text-slate-700 text-sm font-medium">Total</p>
           <p id="total" class="text-2xl font-bold">0</p>
@@ -51,14 +51,13 @@
       </div>
     </header>
 
-    <main class="w-[1110px] mx-auto pt-5 pb-10">
-    <main class="w-[1110px] mx-auto pt-5 pb-10">
-      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-5"
-      >
+    
+    <main class="mt-5 mb-10">
+      <div class="flex justify-between items-center mb-5">
         <h2 class="text-xl font-semibold text-[#002C5C]">Available Jobs</h2>
-        <span id="tabCount" class="text-slate-500 mt-2 sm:mt-0">8 jobs</span>
+        <p id="tabCount" class="text-slate-500 ">8 jobs</p>
       </div>
-      <div class="mb-6">
+      <div class="mb-6 lg:text-left text-center space-x-4">
         <button
           onclick="toggleStyle('all-filter-btn')"
           class="bg-blue-500 border border-gray-200 text-white h-9 w-20 text-sm rounded-sm cursor-pointer "
@@ -111,7 +110,7 @@
                 <p class="notes mt-2 text-[#002C5C]">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
             </div>            
 
-            <div class="flex gap-5">
+            <div class="flex gap-5 lg:justify-start justify-center">
               <button class="interview-btn text-sm font-semibold leading-6 text-emerald-500 h-9 w-25 border border-emerald-500 rounded-sm hover:bg-emerald-100">
                 Interview
               </button>
