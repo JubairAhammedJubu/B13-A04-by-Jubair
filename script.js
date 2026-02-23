@@ -55,4 +55,90 @@ function toggleStyle(id) {
   }
 }
 
+// Event delegation
+mainContainer.addEventListener("click", function (event) {
+
+// Interview Button
+
+  if (event.target.classList.contains("interview-btn")) {
+    const parentNode = event.target.parentNode.parentNode;
+
+    const companyName = parentNode.querySelector(".companyName").innerText;
+    const jobRole = parentNode.querySelector(".jobRole").innerText;
+    const timesalary = parentNode.querySelector(".timesalary").innerText;
+    const details = parentNode.querySelector(".notes").innerText;
+    const statusButton = parentNode.querySelector("#status");
+    if (statusButton) statusButton.innerText = "Interview";
+
+    const jobInfo = {
+      companyName,
+      jobRole,
+      timesalary,
+      status: "Interview",
+      details,
+    };
+
+
+    const jobExist = interviewList.find(
+      (item) => item.companyName === jobInfo.companyName,
+    );
+
+    if (!jobExist) {
+      interviewList.push(jobInfo);
+    }
+
+
+    rejectedList = rejectedList.filter(
+      (item) => item.companyName !== jobInfo.companyName,
+    );
+
+    
+    if (currentStatus === "rejected-filter-btn") {
+      renderRejected();
+    }
+
+    calculateCount();
+  }
+
+  // Rejected Button
+  else if (event.target.classList.contains("rejected-btn")) {
+    const parentNode = event.target.parentNode.parentNode;
+
+    const companyName = parentNode.querySelector(".companyName").innerText;
+    const jobRole = parentNode.querySelector(".jobRole").innerText;
+    const timesalary = parentNode.querySelector(".timesalary").innerText;
+    const details = parentNode.querySelector(".notes").innerText;
+    const statusButton = parentNode.querySelector("#status");
+    if (statusButton) statusButton.innerText = "Rejected";
+
+    const jobInfo = {
+      companyName,
+      jobRole,
+      status: "Rejected",
+      details,
+    };
+
+
+    const jobExist = rejectedList.find(
+      (item) => item.companyName === jobInfo.companyName,
+    );
+
+    if (!jobExist) {
+      rejectedList.push(jobInfo);
+    }
+
+
+    interviewList = interviewList.filter(
+      (item) => item.companyName !== jobInfo.companyName,
+    );
+
+
+    if (currentStatus === "interview-filter-btn") {
+      renderInterview();
+    }
+
+    calculateCount();
+  }
+
+});
 
