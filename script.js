@@ -241,16 +241,16 @@ function renderInterview() {
           </p>
         </div>
         <div>
-          <button class="bg-[#EEF4FF] text-[#002C5C] h-9 w-28 text-sm font-medium rounded-sm">${job.status} </button>
+          <button class="bg-emerald-500 , text-white h-9 w-28 text-sm font-medium rounded-sm">${job.status} </button>
           <p class="notes mt-2 text-[#002C5C]">${job.details}</p>
         </div>
         <div class="flex gap-5">
-          <button class="interview-btn text-sm font-semibold leading-6 text-emerald-500 h-9 w-25 border border-emerald-500 rounded-sm">Interview</button>
-          <button class="rejected-btn text-sm font-semibold leading-6 text-red-500 h-9 w-25 border border-red-500 rounded-sm">Rejected</button>
+          <button class="interview-btn text-sm font-semibold leading-6 text-emerald-500 h-9 w-25 border border-emerald-500 rounded-sm hover:bg-emerald-100">Interview</button>
+          <button class="rejected-btn text-sm font-semibold leading-6 text-red-500 h-9 w-25 border border-red-500 rounded-sm hover:bg-red-100">Rejected</button>
         </div>
       </div>
       <div class="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center">
-        <button class="btn-delete"><i class="fa-regular fa-trash-can text-slate-500"></i></button>
+        <button class="btn-delete"><i class="fa-regular fa-trash-can text-slate-500 hover:text-red-600"></i></button>
       </div>
     `;
     filterSection.appendChild(div);
@@ -288,16 +288,16 @@ function renderRejected() {
           </p>
         </div>
         <div>
-          <button class="bg-[#EEF4FF] text-[#002C5C] h-9 w-28 text-sm font-medium rounded-sm">${job.status}</button>
+          <button class="bg-red-500 , text-white , h-9 w-28 text-sm font-medium rounded-sm">${job.status}</button>
           <p class="notes mt-2 text-[#002C5C]">${job.details}</p>
         </div>
         <div class="flex gap-5">
-          <button class="interview-btn text-sm font-semibold leading-6 text-emerald-500 h-9 w-25 border border-emerald-500 rounded-sm">Interview</button>
-          <button class="rejected-btn text-sm font-semibold leading-6 text-red-500 h-9 w-25 border border-red-500 rounded-sm">Rejected</button>
+          <button class="interview-btn text-sm font-semibold leading-6 text-emerald-500 h-9 w-25 border border-emerald-500 rounded-sm hover:bg-emerald-100">Interview</button>
+          <button class="rejected-btn text-sm font-semibold leading-6 text-red-500 h-9 w-25 border border-red-500 rounded-sm hover:bg-red-100">Rejected</button>
         </div>
       </div>
       <div class="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center">
-        <button class="btn-delete"><i class="fa-regular fa-trash-can text-slate-500"></i></button>
+        <button class="btn-delete"><i class="fa-regular fa-trash-can text-slate-500 hover:text-red-600"></i></button>
       </div>
     `;
     filterSection.appendChild(div);
