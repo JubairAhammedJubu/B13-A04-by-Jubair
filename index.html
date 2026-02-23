@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Tracker</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- icon -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        font-family: "Geist", sans-serif;
+      }
+    </style>
+  </head>
+
+  <body class="bg-[#f8fafc] w-[1110px] mx-auto">
+    <header class="mx-auto border-b-2 border-gray-200">
+      <h1 class="text-4xl font-bold mt-14">Job Application Tracker</h1>
+      <div class="grid grid-cols-3 gap-8 my-7">
+        <div class="bg-white border border-gray-200 rounded-lg p-5">
+          <p class="text-slate-700 text-sm font-medium">Total</p>
+          <p id="total" class="text-2xl font-bold">0</p>
+        </div>
+
+        <div class="bg-white border border-gray-200 rounded-lg p-5">
+          <p class="text-slate-700 text-sm font-medium">Thrive</p>
+          <p id="thrivingCount" class="text-emerald-500 text-2xl font-bold">0</p>
+        </div>
+
+        <div class="bg-white border border-gray-200 rounded-lg p-5">
+          <p class="text-slate-700 text-sm font-medium">Struggling</p>
+          <p id="strugglingCount" class="text-red-500 text-2xl font-bold">0</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="w-[1110px] mx-auto pt-5 pb-10">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-5"
+      >
+        <h2 class="text-xl font-semibold text-[#002C5C]">Available Jobs</h2>
+        <span id="tabCount" class="text-slate-500 mt-2 sm:mt-0">8 jobs</span>
+      </div>
+      <div class="mb-6">
+        <button
+          onclick="toggleStyle('all-filter-btn')"
+          class="bg-blue-500 border border-gray-200 text-white h-9 w-20 text-sm rounded-sm"
+          id="all-filter-btn"
+        >
+          All
+        </button>
+        <button
+          onclick="toggleStyle('thriving-filter-btn')"
+          class="bg-white border border-gray-200 h-9 w-20 text-sm rounded-sm"
+          id="thriving-filter-btn"
+        >
+          Interview
+        </button>
+        <button
+          onclick="toggleStyle('struggling-filter-btn')"
+          class="bg-white border border-gray-200 h-9 w-20 text-sm rounded-sm"
+          id="struggling-filter-btn"
+        >
+          Rejected
+        </button>
+      </div>
+
+      <!-- Section card -->
+
+      <section id="filtered-section" class="hidden"></section>
+
+      <section id="allCards" class="">
+        <!-- card 1 -->
+        <div class="card flex justify-between border border-gray-200 p-6 mb-6 rounded-lg">
+          <div class="space-y-5">
+            <!-- part 1 -->
+            <div>
+              <p class="plantName text-lg text-[#002C5C] font-semibold leading-6">Mobile First Corp</p>
+              <p class="latinName mt-1.5 text-slate-500">React Native Developer</p>
+            </div>
+
+            <!-- part 2 -->
+            <div class="text-slate-500">
+              <p class="light">Remote  <span class="px-1.5">•</span>  Full-time <span class="px-1.5">•</span> $130,000 - $175,000</p>
+            </div>
+            <!-- part 3 -->
+            <div >
+                <button
+                class="bg-[#EEF4FF] text-[#002C5C] h-9 w-28 text-sm font-medium rounded-sm"
+                id="struggling-filter-btn"
+                >
+                NOT APPLIED
+                </button>
+                <p class="notes mt-2">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
+            </div>            
+
+            <div class="flex gap-5">
+              <button class="thriving-btn text-sm font-semibold leading-6 text-emerald-500 h-9 w-25 border border-emerald-500 rounded-sm">
+                Interview
+              </button>
+              <button class="struggling-btn text-sm font-semibold leading-6 text-red-500 h-9 w-25 border border-red-500 rounded-sm ">
+                Rejected
+              </button>
+            </div>
+          </div>
+
+          <!-- main part 2 -->
+          <div class="w-9 h-9  rounded-full border border-gray-200 flex items-center justify-center">
+            <button class="btn-delete">
+            <i class="fa-regular fa-trash-can text-slate-500"></i>
+          </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- card 2 -->
+
+
+        <!-- card 3 -->
+
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
