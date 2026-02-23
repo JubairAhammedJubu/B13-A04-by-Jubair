@@ -4,7 +4,7 @@ let currentStatus = "all";
 
 let total = document.getElementById("total");
 let interviewCount = document.getElementById("interviewCount");
-let rejectedCount = document.getElementById("rejectedCount"); 
+let rejectedCount = document.getElementById("rejectedCount");
 
 const allFilterBtn = document.getElementById("all-filter-btn");
 const interviewFilterBtn = document.getElementById("interview-filter-btn");
@@ -22,7 +22,6 @@ function calculateCount() {
 
 calculateCount();
 
-
 function toggleStyle(id) {
   // Reset all buttons
   allFilterBtn.classList.add("bg-white", "text-black");
@@ -36,11 +35,9 @@ function toggleStyle(id) {
   const selected = document.getElementById(id);
   currentStatus = id;
 
-
   selected.classList.remove("bg-white", "text-black");
   selected.classList.add("bg-blue-500", "text-white");
 
-  
   if (id === "interview-filter-btn") {
     allCardSection.classList.add("hidden");
     filterSection.classList.remove("hidden");
@@ -57,8 +54,7 @@ function toggleStyle(id) {
 
 // Event delegation
 mainContainer.addEventListener("click", function (event) {
-
-// Interview Button
+  // Interview Button
 
   if (event.target.classList.contains("interview-btn")) {
     const parentNode = event.target.parentNode.parentNode;
@@ -78,7 +74,6 @@ mainContainer.addEventListener("click", function (event) {
       details,
     };
 
-
     const jobExist = interviewList.find(
       (item) => item.companyName === jobInfo.companyName,
     );
@@ -87,12 +82,10 @@ mainContainer.addEventListener("click", function (event) {
       interviewList.push(jobInfo);
     }
 
-
     rejectedList = rejectedList.filter(
       (item) => item.companyName !== jobInfo.companyName,
     );
 
-    
     if (currentStatus === "rejected-filter-btn") {
       renderRejected();
     }
@@ -114,10 +107,10 @@ mainContainer.addEventListener("click", function (event) {
     const jobInfo = {
       companyName,
       jobRole,
+      timesalary,
       status: "Rejected",
       details,
     };
-
 
     const jobExist = rejectedList.find(
       (item) => item.companyName === jobInfo.companyName,
@@ -127,11 +120,9 @@ mainContainer.addEventListener("click", function (event) {
       rejectedList.push(jobInfo);
     }
 
-
     interviewList = interviewList.filter(
       (item) => item.companyName !== jobInfo.companyName,
     );
-
 
     if (currentStatus === "interview-filter-btn") {
       renderInterview();
@@ -139,6 +130,4 @@ mainContainer.addEventListener("click", function (event) {
 
     calculateCount();
   }
-
 });
-
