@@ -13,11 +13,33 @@ const rejectedFilterBtn = document.getElementById("rejected-filter-btn");
 const allCardSection = document.getElementById("allCards");
 const mainContainer = document.querySelector("main");
 const filterSection = document.getElementById("filtered-section");
+const tabCount = document.getElementById("tabCount");
 
 function calculateCount() {
   total.innerText = allCardSection.children.length;
   interviewCount.innerText = interviewList.length;
   rejectedCount.innerText = rejectedList.length;
+  console.log(currentStatus);
+
+  if (currentStatus === "all-filter-btn") {
+    tabCount.innerText = total.innerText + " jobs";
+  }
+
+  if (currentStatus === "interview-filter-btn") {
+    tabCount.innerText =
+      interviewCount.innerText +
+      " of " +
+      allCardSection.children.length +
+      " jobs";
+  }
+
+  if (currentStatus === "rejected-filter-btn") {
+    tabCount.innerText =
+      rejectedCount.innerText +
+      " of " +
+      allCardSection.children.length +
+      " jobs";
+  }
 }
 
 calculateCount();
@@ -43,6 +65,7 @@ function toggleStyle(id) {
 
   const selected = document.getElementById(id);
   currentStatus = id;
+  calculateCount();
 
   // Apply active styles
   selected.classList.remove("bg-white", "text-black", "hover:text-blue-600");
@@ -190,6 +213,18 @@ mainContainer.addEventListener("click", function (event) {
 // Render Interview cards
 function renderInterview() {
   filterSection.innerHTML = "";
+
+  if (interviewList.length === 0) {
+    filterSection.innerHTML = `
+      <div class="text-center py-18 border border-gray-200 rounded-lg">
+        <img src="jobs.png" alt="No Jobs" class="w-24 mx-auto my-5" />
+        <h2 class="text-2xl font-semibold text-[#002C5C]">No Jobs Available</h2>
+        <p class="text-gray-500">Check back soon for new job opportunities</p>
+      </div>
+    `;
+    return;
+  }
+
   for (let job of interviewList) {
     const div = document.createElement("div");
     div.className =
@@ -225,6 +260,18 @@ function renderInterview() {
 // Render Rejected cards
 function renderRejected() {
   filterSection.innerHTML = "";
+
+  if (rejectedList.length === 0) {
+    filterSection.innerHTML = `
+      <div class="text-center py-18 border border-gray-200 rounded-lg">
+        <img src="jobs.png" alt="No Jobs" class="w-24 mx-auto my-5" />
+        <h2 class="text-2xl font-semibold text-[#002C5C]">No Jobs Available</h2>
+        <p class="text-gray-500">Check back soon for new job opportunities</p>
+      </div>
+    `;
+    return;
+  }
+
   for (let job of rejectedList) {
     const div = document.createElement("div");
     div.className =
