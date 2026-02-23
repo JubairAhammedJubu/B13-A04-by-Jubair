@@ -22,12 +22,20 @@ function calculateCount() {
 
 calculateCount();
 
-
+// Toggle filter buttons
 function toggleStyle(id) {
   // Reset all buttons
-  allFilterBtn.classList.add("bg-white", "text-black");
-  interviewFilterBtn.classList.add("bg-white", "text-black");
-  rejectedFilterBtn.classList.add("bg-white", "text-black");
+  allFilterBtn.classList.add("bg-white", "text-black", "hover:text-blue-600");
+  interviewFilterBtn.classList.add(
+    "bg-white",
+    "text-black",
+    "hover:text-blue-600",
+  );
+  rejectedFilterBtn.classList.add(
+    "bg-white",
+    "text-black",
+    "hover:text-blue-600",
+  );
 
   allFilterBtn.classList.remove("bg-blue-500", "text-white");
   interviewFilterBtn.classList.remove("bg-blue-500", "text-white");
@@ -36,11 +44,11 @@ function toggleStyle(id) {
   const selected = document.getElementById(id);
   currentStatus = id;
 
-
-  selected.classList.remove("bg-white", "text-black");
+  // Apply active styles
+  selected.classList.remove("bg-white", "text-black", "hover:text-blue-600");
   selected.classList.add("bg-blue-500", "text-white");
 
-
+  // Show/hide filtered section
   if (id === "interview-filter-btn") {
     allCardSection.classList.add("hidden");
     filterSection.classList.remove("hidden");
@@ -57,16 +65,20 @@ function toggleStyle(id) {
 
 // Event delegation
 mainContainer.addEventListener("click", function (event) {
-  // Interview button 
+  // Interview button clicked
   if (event.target.classList.contains("interview-btn")) {
-    const card = event.target.closest(".card"); // Find the parent .card
+    const card = event.target.closest(".card");
 
     const companyName = card.querySelector(".companyName").innerText;
     const jobRole = card.querySelector(".jobRole").innerText;
     const timesalary = card.querySelector(".timesalary").innerText;
     const details = card.querySelector(".notes").innerText;
     const statusButton = card.querySelector("#status");
-    if (statusButton) statusButton.innerText = "Interview";
+    if (statusButton) {
+      statusButton.innerText = "Interview";
+      statusButton.classList.remove("hidden", "bg-red-500", "text-white");
+      statusButton.classList.add("bg-emerald-500", "text-white");
+    }
 
     const [location, jobType, salary] = timesalary.split(" • ");
 
@@ -80,7 +92,7 @@ mainContainer.addEventListener("click", function (event) {
       details,
     };
 
-  
+    // Add to interview list if not already present
     const jobExist = interviewList.find(
       (item) => item.companyName === jobInfo.companyName,
     );
@@ -88,12 +100,12 @@ mainContainer.addEventListener("click", function (event) {
       interviewList.push(jobInfo);
     }
 
-
+    // Remove from rejected list if exists
     rejectedList = rejectedList.filter(
       (item) => item.companyName !== jobInfo.companyName,
     );
 
-
+    // Re-render if in "rejected" tab
     if (currentStatus === "rejected-filter-btn") {
       renderRejected();
     }
@@ -101,7 +113,7 @@ mainContainer.addEventListener("click", function (event) {
     calculateCount();
   }
 
-  // Rejected button 
+  // Rejected button clicked
   else if (event.target.classList.contains("rejected-btn")) {
     const card = event.target.closest(".card");
 
@@ -110,7 +122,11 @@ mainContainer.addEventListener("click", function (event) {
     const timesalary = card.querySelector(".timesalary").innerText;
     const details = card.querySelector(".notes").innerText;
     const statusButton = card.querySelector("#status");
-    if (statusButton) statusButton.innerText = "Rejected";
+    if (statusButton) {
+      statusButton.innerText = "Rejected";
+      statusButton.classList.remove("hidden", "bg-emerald-500", "text-white");
+      statusButton.classList.add("bg-red-500", "text-white");
+    }
 
     const [location, jobType, salary] = timesalary.split(" • ");
 
@@ -124,7 +140,7 @@ mainContainer.addEventListener("click", function (event) {
       details,
     };
 
-  
+    // Add to rejected list if not already present
     const jobExist = rejectedList.find(
       (item) => item.companyName === jobInfo.companyName,
     );
@@ -132,11 +148,12 @@ mainContainer.addEventListener("click", function (event) {
       rejectedList.push(jobInfo);
     }
 
+    // Remove from interview list if exists
     interviewList = interviewList.filter(
       (item) => item.companyName !== jobInfo.companyName,
     );
 
-
+    // Re-render if in "interview" tab
     if (currentStatus === "interview-filter-btn") {
       renderInterview();
     }
@@ -144,15 +161,16 @@ mainContainer.addEventListener("click", function (event) {
     calculateCount();
   }
 
-  // Delete card
+  // Delete card clicked
   if (event.target.closest(".btn-delete")) {
     const card = event.target.closest(".card");
 
     const companyName = card.querySelector(".companyName").innerText;
 
+    // Remove card from the DOM
     card.remove();
 
-
+    // Remove from interview and rejected lists
     interviewList = interviewList.filter(
       (job) => job.companyName !== companyName,
     );
@@ -160,7 +178,7 @@ mainContainer.addEventListener("click", function (event) {
       (job) => job.companyName !== companyName,
     );
 
-
+    // Re-render if currently in filtered views
     if (currentStatus === "interview-filter-btn") renderInterview();
     if (currentStatus === "rejected-filter-btn") renderRejected();
 
