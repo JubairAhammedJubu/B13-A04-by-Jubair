@@ -40,17 +40,18 @@
         </div>
 
         <div class="bg-white border border-gray-200 rounded-lg p-5">
-          <p class="text-slate-700 text-sm font-medium">Thrive</p>
-          <p id="thrivingCount" class="text-emerald-500 text-2xl font-bold">0</p>
+          <p class="text-slate-700 text-sm font-medium">Interview</p>
+          <p id="interviewCount" class="text-emerald-500 text-2xl font-bold">0</p>
         </div>
 
         <div class="bg-white border border-gray-200 rounded-lg p-5">
-          <p class="text-slate-700 text-sm font-medium">Struggling</p>
-          <p id="strugglingCount" class="text-red-500 text-2xl font-bold">0</p>
+          <p class="text-slate-700 text-sm font-medium">Rejected</p>
+          <p id="rejectedCount" class="text-red-500 text-2xl font-bold">0</p>
         </div>
       </div>
     </header>
 
+    <main class="w-[1110px] mx-auto pt-5 pb-10">
     <main class="w-[1110px] mx-auto pt-5 pb-10">
       <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-5"
       >
@@ -66,45 +67,44 @@
           All
         </button>
         <button
-          onclick="toggleStyle('thriving-filter-btn')"
+          onclick="toggleStyle('interview-filter-btn')"
           class="bg-white border border-gray-200 h-9 w-20 text-sm rounded-sm"
-          id="thriving-filter-btn"
+          id="interview-filter-btn"
         >
           Interview
         </button>
         <button
-          onclick="toggleStyle('struggling-filter-btn')"
+          onclick="toggleStyle('rejected-filter-btn')"
           class="bg-white border border-gray-200 h-9 w-20 text-sm rounded-sm"
-          id="struggling-filter-btn"
+          id="rejected-filter-btn"
         >
           Rejected
         </button>
       </div>
 
-      <!-- Section card -->
 
       <section id="filtered-section" class="hidden"></section>
 
       <section id="allCards" class="">
 
+
+
         <!-- card 1 -->
         <div class="card flex justify-between border border-gray-200 p-6 mb-6 rounded-lg ">
           <div class="space-y-5">
-            <!-- part 1 -->
             <div>
-              <p class="plantName text-lg text-[#002C5C] font-semibold leading-6">Mobile First Corp</p>
-              <p class="latinName mt-1.5 text-slate-500">React Native Developer</p>
+              <p class="companyName text-lg text-[#002C5C] font-semibold leading-6">Mobile First Corp</p>
+              <p class="jobRole mt-1.5 text-slate-500">React Native Developer</p>
             </div>
 
-            <!-- part 2 -->
             <div class="text-slate-500">
-              <p class="light">Remote  <span class="px-1.5">•</span>  Full-time <span class="px-1.5">•</span> $130,000 - $175,000</p>
+              <p class="timesalary">Remote  <span class="px-1.5">•</span>  Full-time <span class="px-1.5">•</span> $130,000 - $175,000</p>
             </div>
-            <!-- part 3 -->
+
             <div >
                 <button
                 class="bg-[#EEF4FF] text-[#002C5C] h-9 w-28 text-sm font-medium rounded-sm"
-                id="struggling-filter-btn"
+                id="status"
                 >
                 NOT APPLIED
                 </button>
@@ -112,16 +112,15 @@
             </div>            
 
             <div class="flex gap-5">
-              <button class="thriving-btn text-sm font-semibold leading-6 text-emerald-500 h-9 w-25 border border-emerald-500 rounded-sm">
+              <button class="interview-btn text-sm font-semibold leading-6 text-emerald-500 h-9 w-25 border border-emerald-500 rounded-sm">
                 Interview
               </button>
-              <button class="struggling-btn text-sm font-semibold leading-6 text-red-500 h-9 w-25 border border-red-500 rounded-sm ">
+              <button class="rejected-btn text-sm font-semibold leading-6 text-red-500 h-9 w-25 border border-red-500 rounded-sm ">
                 Rejected
               </button>
             </div>
           </div>
 
-          <!-- main part 2 -->
           <div class="w-9 h-9  rounded-full border border-gray-200 flex items-center justify-center">
             <button class="btn-delete">
             <i class="fa-regular fa-trash-can text-slate-500"></i>
@@ -129,25 +128,25 @@
           </div>
         </div>
 
+
+
         <!-- card 2 -->
         <div class="card flex justify-between border border-gray-200 p-6 mb-6 rounded-lg ">
           <div class="space-y-5">
-            <!-- part 1 -->
+
             <div>
-              <p class="plantName text-lg text-[#002C5C] font-semibold leading-6">WebFlow Agency</p>
-              <p class="latinName mt-1.5 text-slate-500">Web Designer & Developer</p>
+              <p class="companyName text-lg text-[#002C5C] font-semibold leading-6">WebFlow Agency</p>
+              <p class="jobRole mt-1.5 text-slate-500">Web Designer & Developer</p>
             </div>
 
-            <!-- part 2 -->
             <div class="text-slate-500">
-              <p class="light">Los Angeles, CA  <span class="px-1.5">•</span>  Part-time <span class="px-1.5">•</span>  $80,000 - $120,000</p>
+              <p class="timesalary">Los Angeles, CA  <span class="px-1.5">•</span>  Part-time <span class="px-1.5">•</span>  $80,000 - $120,000</p>
             </div>
 
-            <!-- part 3 -->
             <div >
                 <button
                 class="bg-[#EEF4FF] text-[#002C5C] h-9 w-28 text-sm font-medium rounded-sm"
-                id="struggling-filter-btn"
+                id="status"
                 >
                 NOT APPLIED
                 </button>
@@ -155,16 +154,15 @@
             </div>            
 
             <div class="flex gap-5">
-              <button class="thriving-btn text-sm font-semibold leading-6 text-emerald-500 h-9 w-25 border border-emerald-500 rounded-sm">
+              <button class="interview-btn text-sm font-semibold leading-6 text-emerald-500 h-9 w-25 border border-emerald-500 rounded-sm">
                 Interview
               </button>
-              <button class="struggling-btn text-sm font-semibold leading-6 text-red-500 h-9 w-25 border border-red-500 rounded-sm ">
+              <button class="rejected-btn text-sm font-semibold leading-6 text-red-500 h-9 w-25 border border-red-500 rounded-sm ">
                 Rejected
               </button>
             </div>
           </div>
 
-          <!-- main part 2 -->
           <div class="w-9 h-9  rounded-full border border-gray-200 flex items-center justify-center">
             <button class="btn-delete">
             <i class="fa-regular fa-trash-can text-slate-500"></i>
@@ -172,25 +170,25 @@
           </div>
         </div>     
 
+
+
         <!-- card 3 -->
         <div class="card flex justify-between border border-gray-200 p-6 mb-6 rounded-lg ">
           <div class="space-y-5">
-            <!-- part 1 -->
+
             <div>
-              <p class="plantName text-lg text-[#002C5C] font-semibold leading-6">DataViz Solutions</p>
-              <p class="latinName mt-1.5 text-slate-500">Data Visualization Specialist</p>
+              <p class="companyName text-lg text-[#002C5C] font-semibold leading-6">DataViz Solutions</p>
+              <p class="jobRole mt-1.5 text-slate-500">Data Visualization Specialist</p>
             </div>
 
-            <!-- part 2 -->
             <div class="text-slate-500">
-              <p class="light">Boston, MA  <span class="px-1.5">•</span>  Full-time <span class="px-1.5">•</span> $125,000 - $165,000</p>
+              <p class="timesalary">Boston, MA  <span class="px-1.5">•</span>  Full-time <span class="px-1.5">•</span> $125,000 - $165,000</p>
             </div>
 
-            <!-- part 3 -->
             <div >
                 <button
                 class="bg-[#EEF4FF] text-[#002C5C] h-9 w-28 text-sm font-medium rounded-sm"
-                id="struggling-filter-btn"
+                id="status"
                 >
                 NOT APPLIED
                 </button>
@@ -198,16 +196,15 @@
             </div>            
 
             <div class="flex gap-5">
-              <button class="thriving-btn text-sm font-semibold leading-6 text-emerald-500 h-9 w-25 border border-emerald-500 rounded-sm">
+              <button class="interview-btn text-sm font-semibold leading-6 text-emerald-500 h-9 w-25 border border-emerald-500 rounded-sm">
                 Interview
               </button>
-              <button class="struggling-btn text-sm font-semibold leading-6 text-red-500 h-9 w-25 border border-red-500 rounded-sm ">
+              <button class="rejected-btn text-sm font-semibold leading-6 text-red-500 h-9 w-25 border border-red-500 rounded-sm ">
                 Rejected
               </button>
             </div>
           </div>
 
-          <!-- main part 2 -->
           <div class="w-9 h-9  rounded-full border border-gray-200 flex items-center justify-center">
             <button class="btn-delete">
             <i class="fa-regular fa-trash-can text-slate-500"></i>
@@ -215,25 +212,25 @@
           </div>
         </div>
 
+
+
         <!-- card 4 -->
         <div class="card flex justify-between border border-gray-200 p-6 mb-6 rounded-lg ">
           <div class="space-y-5">
-            <!-- part 1 -->
+
             <div>
-              <p class="plantName text-lg text-[#002C5C] font-semibold leading-6">CloudFirst Inc</p>
-              <p class="latinName mt-1.5 text-slate-500">Backend Developer</p>
+              <p class="companyName text-lg text-[#002C5C] font-semibold leading-6">CloudFirst Inc</p>
+              <p class="jobRole mt-1.5 text-slate-500">Backend Developer</p>
             </div>
 
-            <!-- part 2 -->
             <div class="text-slate-500">
-              <p class="light">Seattle, WA  <span class="px-1.5">•</span>  Full-time <span class="px-1.5">•</span> $140,000 - $190,000</p>
+              <p class="timesalary">Seattle, WA  <span class="px-1.5">•</span>  Full-time <span class="px-1.5">•</span> $140,000 - $190,000</p>
             </div>
 
-            <!-- part 3 -->
             <div >
                 <button
                 class="bg-[#EEF4FF] text-[#002C5C] h-9 w-28 text-sm font-medium rounded-sm"
-                id="struggling-filter-btn"
+                id="status"
                 >
                 NOT APPLIED
                 </button>
@@ -241,16 +238,15 @@
             </div>            
 
             <div class="flex gap-5">
-              <button class="thriving-btn text-sm font-semibold leading-6 text-emerald-500 h-9 w-25 border border-emerald-500 rounded-sm">
+              <button class="interview-btn text-sm font-semibold leading-6 text-emerald-500 h-9 w-25 border border-emerald-500 rounded-sm">
                 Interview
               </button>
-              <button class="struggling-btn text-sm font-semibold leading-6 text-red-500 h-9 w-25 border border-red-500 rounded-sm ">
+              <button class="rejected-btn text-sm font-semibold leading-6 text-red-500 h-9 w-25 border border-red-500 rounded-sm ">
                 Rejected
               </button>
             </div>
           </div>
 
-          <!-- main part 2 -->
           <div class="w-9 h-9  rounded-full border border-gray-200 flex items-center justify-center">
             <button class="btn-delete">
             <i class="fa-regular fa-trash-can text-slate-500"></i>
@@ -258,25 +254,25 @@
           </div>
         </div>
 
+
+
         <!-- card 5 -->
         <div class="card flex justify-between border border-gray-200 p-6 mb-6 rounded-lg ">
           <div class="space-y-5">
-            <!-- part 1 -->
+
             <div>
-              <p class="plantName text-lg text-[#002C5C] font-semibold leading-6">Innovation Labs</p>
-              <p class="latinName mt-1.5 text-slate-500">UI/UX Engineer</p>
+              <p class="companyName text-lg text-[#002C5C] font-semibold leading-6">Innovation Labs</p>
+              <p class="jobRole mt-1.5 text-slate-500">UI/UX Engineer</p>
             </div>
 
-            <!-- part 2 -->
             <div class="text-slate-500">
-              <p class="light">Austin, TX  <span class="px-1.5">•</span>  Part-time <span class="px-1.5">•</span> $110,000 - $150,000</p>
+              <p class="timesalary">Austin, TX  <span class="px-1.5">•</span>  Part-time <span class="px-1.5">•</span> $110,000 - $150,000</p>
             </div>
 
-            <!-- part 3 -->
             <div >
                 <button
                 class="bg-[#EEF4FF] text-[#002C5C] h-9 w-28 text-sm font-medium rounded-sm"
-                id="struggling-filter-btn"
+                id="status"
                 >
                 NOT APPLIED
                 </button>
@@ -284,16 +280,15 @@
             </div>            
 
             <div class="flex gap-5">
-              <button class="thriving-btn text-sm font-semibold leading-6 text-emerald-500 h-9 w-25 border border-emerald-500 rounded-sm">
+              <button class="interview-btn text-sm font-semibold leading-6 text-emerald-500 h-9 w-25 border border-emerald-500 rounded-sm">
                 Interview
               </button>
-              <button class="struggling-btn text-sm font-semibold leading-6 text-red-500 h-9 w-25 border border-red-500 rounded-sm ">
+              <button class="rejected-btn text-sm font-semibold leading-6 text-red-500 h-9 w-25 border border-red-500 rounded-sm ">
                 Rejected
               </button>
             </div>
           </div>
 
-          <!-- main part 2 -->
           <div class="w-9 h-9  rounded-full border border-gray-200 flex items-center justify-center">
             <button class="btn-delete">
             <i class="fa-regular fa-trash-can text-slate-500"></i>
@@ -302,25 +297,24 @@
         </div>
 
 
+
         <!-- card 6 -->
         <div class="card flex justify-between border border-gray-200 p-6 mb-6 rounded-lg ">
           <div class="space-y-5">
-            <!-- part 1 -->
+
             <div>
-              <p class="plantName text-lg text-[#002C5C] font-semibold leading-6">MegaCorp Solutions</p>
-              <p class="latinName mt-1.5 text-slate-500">JavaScript Developer</p>
+              <p class="companyName text-lg text-[#002C5C] font-semibold leading-6">MegaCorp Solutions</p>
+              <p class="jobRole mt-1.5 text-slate-500">JavaScript Developer</p>
             </div>
 
-            <!-- part 2 -->
             <div class="text-slate-500">
-              <p class="light">New York, NY <span class="px-1.5">•</span>  Full-time <span class="px-1.5">•</span> $130,000 - $170,00</p>
+              <p class="timesalary">New York, NY <span class="px-1.5">•</span>  Full-time <span class="px-1.5">•</span> $130,000 - $170,00</p>
             </div>
 
-            <!-- part 3 -->
             <div >
                 <button
-                class="bg-[#EEF4FF] text-[#002C5C] h-9 w-28 text-sm font-medium rounded-sm"
-                id="struggling-filter-btn"
+                class=" bg-[#EEF4FF] text-[#002C5C] h-9 w-28 text-sm font-medium rounded-sm"
+                id="status"
                 >
                 NOT APPLIED
                 </button>
@@ -328,42 +322,41 @@
             </div>            
 
             <div class="flex gap-5">
-              <button class="thriving-btn text-sm font-semibold leading-6 text-emerald-500 h-9 w-25 border border-emerald-500 rounded-sm">
+              <button class="interview-btn text-sm font-semibold leading-6 text-emerald-500 h-9 w-25 border border-emerald-500 rounded-sm">
                 Interview
               </button>
-              <button class="struggling-btn text-sm font-semibold leading-6 text-red-500 h-9 w-25 border border-red-500 rounded-sm ">
+              <button class="rejected-btn text-sm font-semibold leading-6 text-red-500 h-9 w-25 border border-red-500 rounded-sm ">
                 Rejected
               </button>
             </div>
           </div>
 
-          <!-- main part 2 -->
-          <div class="w-9 h-9  rounded-full border border-gray-200 flex items-center justify-center">
+          <div class="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center">
             <button class="btn-delete">
             <i class="fa-regular fa-trash-can text-slate-500"></i>
             </button>
           </div>
         </div>
 
+
+
         <!-- card 7 -->
         <div class="card flex justify-between border border-gray-200 p-6 mb-6 rounded-lg ">
           <div class="space-y-5">
-            <!-- part 1 -->
+
             <div>
-              <p class="plantName text-lg text-[#002C5C] font-semibold leading-6">StartupXYZ</p>
-              <p class="latinName mt-1.5 text-slate-500">Full Stack Engineer</p>
+              <p class="companyName text-lg text-[#002C5C] font-semibold leading-6">StartupXYZ</p>
+              <p class="jobRole mt-1.5 text-slate-500">Full Stack Engineer</p>
             </div>
 
-            <!-- part 2 -->
             <div class="text-slate-500">
-              <p class="light">Remote  <span class="px-1.5">•</span>  Full-time <span class="px-1.5">•</span> $120,000 - $160,000</p>
+              <p class="timesalary">Remote  <span class="px-1.5">•</span>  Full-time <span class="px-1.5">•</span> $120,000 - $160,000</p>
             </div>
 
-            <!-- part 3 -->
             <div >
                 <button
                 class="bg-[#EEF4FF] text-[#002C5C] h-9 w-28 text-sm font-medium rounded-sm"
-                id="struggling-filter-btn"
+                id="status"
                 >
                 NOT APPLIED
                 </button>
@@ -371,42 +364,41 @@
             </div>            
 
             <div class="flex gap-5">
-              <button class="thriving-btn text-sm font-semibold leading-6 text-emerald-500 h-9 w-25 border border-emerald-500 rounded-sm">
+              <button class="interview-btn text-sm font-semibold leading-6 text-emerald-500 h-9 w-25 border border-emerald-500 rounded-sm">
                 Interview
               </button>
-              <button class="struggling-btn text-sm font-semibold leading-6 text-red-500 h-9 w-25 border border-red-500 rounded-sm ">
+              <button class="rejected-btn text-sm font-semibold leading-6 text-red-500 h-9 w-25 border border-red-500 rounded-sm ">
                 Rejected
               </button>
             </div>
           </div>
 
-          <!-- main part 2 -->
           <div class="w-9 h-9  rounded-full border border-gray-200 flex items-center justify-center">
             <button class="btn-delete">
             <i class="fa-regular fa-trash-can text-slate-500"></i>
             </button>
           </div>
         </div>
+
         
+
         <!-- card 8 -->
         <div class="card flex justify-between border border-gray-200 p-6 mb-6 rounded-lg ">
           <div class="space-y-5">
-            <!-- part 1 -->
+
             <div>
-              <p class="plantName text-lg text-[#002C5C] font-semibold leading-6">TechCorp Industries </p>
-              <p class="latinName mt-1.5 text-slate-500">Senior Frontend Developer</p>
+              <p class="companyName text-lg text-[#002C5C] font-semibold leading-6">TechCorp Industries </p>
+              <p class="jobRole mt-1.5 text-slate-500">Senior Frontend Developer</p>
             </div>
 
-            <!-- part 2 -->
             <div class="text-slate-500">
-              <p class="light">San Francisco, CA  <span class="px-1.5">•</span>  Full-time <span class="px-1.5">•</span> $130,000 - $175,000</p>
+              <p class="timesalary">San Francisco, CA  <span class="px-1.5">•</span>  Full-time <span class="px-1.5">•</span> $130,000 - $175,000</p>
             </div>
 
-            <!-- part 3 -->
             <div >
                 <button
                 class="bg-[#EEF4FF] text-[#002C5C] h-9 w-28 text-sm font-medium rounded-sm"
-                id="struggling-filter-btn"
+                id="status"
                 >
                 NOT APPLIED
                 </button>
@@ -414,16 +406,15 @@
             </div>            
 
             <div class="flex gap-5">
-              <button class="thriving-btn text-sm font-semibold leading-6 text-emerald-500 h-9 w-25 border border-emerald-500 rounded-sm">
+              <button class="interview-btn text-sm font-semibold leading-6 text-emerald-500 h-9 w-25 border border-emerald-500 rounded-sm">
                 Interview
               </button>
-              <button class="struggling-btn text-sm font-semibold leading-6 text-red-500 h-9 w-25 border border-red-500 rounded-sm ">
+              <button class="rejected-btn text-sm font-semibold leading-6 text-red-500 h-9 w-25 border border-red-500 rounded-sm ">
                 Rejected
               </button>
             </div>
           </div>
 
-          <!-- main part 2 -->
           <div class="w-9 h-9  rounded-full border border-gray-200 flex items-center justify-center">
             <button class="btn-delete">
             <i class="fa-regular fa-trash-can text-slate-500"></i>
@@ -433,7 +424,7 @@
 
       </section>
     </main>
-
+    
     <script src="script.js"></script>
   </body>
 </html>
