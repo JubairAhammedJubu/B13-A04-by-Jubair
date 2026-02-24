@@ -14,7 +14,6 @@
 4. This method has Document interface so only works on the document
 5. Designed for unique IDs only so if it get multiple elements with the same ID, it will return the first one document's source.
 
----
 
 ### getElementsByClassName() :
 
@@ -24,7 +23,6 @@
 4. It can be used on document or specific element and can be access element using zero-based index numbers like array
 5. It is Faster than querySelector() or querySelectorAll() methods for simple class name.
 
----
 
 ### querySelectorAll():
 
@@ -34,7 +32,6 @@
 4. Return a empty NodeList or not null if no match .
 5. It Slightly slower than getElementsByClassName() for simple class selection
 
----
 
 ### querySelector():
 
