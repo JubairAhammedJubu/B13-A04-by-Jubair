@@ -100,11 +100,8 @@ mainContainer.addEventListener("click", function (event) {
       statusButton.classList.add("bg-emerald-500", "text-white");
     }
 
-    
-    
     const parts = timesalary.split("•").map((item) => item.trim());
     const [location, jobType, salary] = parts;
-    
 
     const jobInfo = {
       companyName,
@@ -116,7 +113,6 @@ mainContainer.addEventListener("click", function (event) {
       details,
     };
     console.log(jobInfo);
-    
 
     const jobExist = interviewList.find(
       (item) => item.companyName === jobInfo.companyName,
@@ -165,7 +161,6 @@ mainContainer.addEventListener("click", function (event) {
       details,
     };
     console.log(jobInfo);
-    
 
     const jobExist = rejectedList.find(
       (item) => item.companyName === jobInfo.companyName,
@@ -243,7 +238,7 @@ function renderInterview() {
           <button class="bg-emerald-500 , text-white h-9 w-28 text-sm font-medium rounded-sm">${job.status} </button>
           <p class="notes mt-2 text-[#002C5C]">${job.details}</p>
         </div>
-        <div class="flex gap-5">
+        <div class="flex gap-5 lg:justify-start justify-center">
           <button class="interview-btn text-sm font-semibold leading-6 text-emerald-500 h-9 w-25 border border-emerald-500 rounded-sm hover:bg-emerald-100">Interview</button>
           <button class="rejected-btn text-sm font-semibold leading-6 text-red-500 h-9 w-25 border border-red-500 rounded-sm hover:bg-red-100">Rejected</button>
         </div>
@@ -290,7 +285,7 @@ function renderRejected() {
           <button class="bg-red-500 , text-white , h-9 w-28 text-sm font-medium rounded-sm">${job.status}</button>
           <p class="notes mt-2 text-[#002C5C]">${job.details}</p>
         </div>
-        <div class="flex gap-5">
+        <div class="flex gap-5 lg:justify-start justify-center">
           <button class="interview-btn text-sm font-semibold leading-6 text-emerald-500 h-9 w-25 border border-emerald-500 rounded-sm hover:bg-emerald-100">Interview</button>
           <button class="rejected-btn text-sm font-semibold leading-6 text-red-500 h-9 w-25 border border-red-500 rounded-sm hover:bg-red-100">Rejected</button>
         </div>
