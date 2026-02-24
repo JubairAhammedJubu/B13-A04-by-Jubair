@@ -1,6 +1,6 @@
 let interviewList = [];
 let rejectedList = [];
-let currentStatus = "all";
+let currentStatus = "all-filter-btn";
 
 let total = document.getElementById("total");
 let interviewCount = document.getElementById("interviewCount");
@@ -44,9 +44,9 @@ function calculateCount() {
 
 calculateCount();
 
-// Toggle filter buttons
+
 function toggleStyle(id) {
-  // Reset all buttons
+  // Reset buttons
   allFilterBtn.classList.add("bg-white", "text-black", "hover:text-blue-600");
   interviewFilterBtn.classList.add(
     "bg-white",
@@ -67,11 +67,11 @@ function toggleStyle(id) {
   currentStatus = id;
   calculateCount();
 
-  // Apply active styles
+  // active styles
   selected.classList.remove("bg-white", "text-black", "hover:text-blue-600");
   selected.classList.add("bg-blue-500", "text-white");
 
-  // Show/hide filtered section
+ 
   if (id === "interview-filter-btn") {
     allCardSection.classList.add("hidden");
     filterSection.classList.remove("hidden");
@@ -86,9 +86,9 @@ function toggleStyle(id) {
   }
 }
 
-// Event delegation
+
 mainContainer.addEventListener("click", function (event) {
-  // Interview button clicked
+  // Interview
   if (event.target.classList.contains("interview-btn")) {
     const card = event.target.closest(".card");
 
@@ -99,7 +99,7 @@ mainContainer.addEventListener("click", function (event) {
     const statusButton = card.querySelector("#status");
     if (statusButton) {
       statusButton.innerText = "Interview";
-      statusButton.classList.remove("hidden", "bg-red-500", "text-white");
+      statusButton.classList.remove("bg-red-500", "text-white");
       statusButton.classList.add("bg-emerald-500", "text-white");
     }
 
@@ -115,7 +115,7 @@ mainContainer.addEventListener("click", function (event) {
       details,
     };
 
-    // Add to interview list if not already present
+ 
     const jobExist = interviewList.find(
       (item) => item.companyName === jobInfo.companyName,
     );
@@ -123,7 +123,7 @@ mainContainer.addEventListener("click", function (event) {
       interviewList.push(jobInfo);
     }
 
-    // Remove from rejected list if exists
+ 
     rejectedList = rejectedList.filter(
       (item) => item.companyName !== jobInfo.companyName,
     );
@@ -136,7 +136,7 @@ mainContainer.addEventListener("click", function (event) {
     calculateCount();
   }
 
-  // Rejected button clicked
+  // Rejected button 
   else if (event.target.classList.contains("rejected-btn")) {
     const card = event.target.closest(".card");
 
@@ -147,7 +147,7 @@ mainContainer.addEventListener("click", function (event) {
     const statusButton = card.querySelector("#status");
     if (statusButton) {
       statusButton.innerText = "Rejected";
-      statusButton.classList.remove("hidden", "bg-emerald-500", "text-white");
+      statusButton.classList.remove("bg-emerald-500", "text-white");
       statusButton.classList.add("bg-red-500", "text-white");
     }
 
@@ -163,7 +163,7 @@ mainContainer.addEventListener("click", function (event) {
       details,
     };
 
-    // Add to rejected list if not already present
+
     const jobExist = rejectedList.find(
       (item) => item.companyName === jobInfo.companyName,
     );
@@ -171,12 +171,12 @@ mainContainer.addEventListener("click", function (event) {
       rejectedList.push(jobInfo);
     }
 
-    // Remove from interview list if exists
+
     interviewList = interviewList.filter(
       (item) => item.companyName !== jobInfo.companyName,
     );
 
-    // Re-render if in "interview" tab
+
     if (currentStatus === "interview-filter-btn") {
       renderInterview();
     }
@@ -184,16 +184,16 @@ mainContainer.addEventListener("click", function (event) {
     calculateCount();
   }
 
-  // Delete card clicked
-  if (event.target.closest(".btn-delete")) {
+  // Delete card 
+  else if (event.target.closest(".btn-delete")) {
     const card = event.target.closest(".card");
 
     const companyName = card.querySelector(".companyName").innerText;
 
-    // Remove card from the DOM
+
     card.remove();
 
-    // Remove from interview and rejected lists
+
     interviewList = interviewList.filter(
       (job) => job.companyName !== companyName,
     );
@@ -201,16 +201,16 @@ mainContainer.addEventListener("click", function (event) {
       (job) => job.companyName !== companyName,
     );
 
-    // Re-render if currently in filtered views
+ 
     if (currentStatus === "interview-filter-btn") renderInterview();
     if (currentStatus === "rejected-filter-btn") renderRejected();
 
-    // Recalculate counts
+
     calculateCount();
   }
 });
 
-// Render Interview cards
+
 function renderInterview() {
   filterSection.innerHTML = "";
 
@@ -219,7 +219,7 @@ function renderInterview() {
       <div class="text-center py-18 border border-gray-200 rounded-lg">
         <img src="jobs.png" alt="No Jobs" class="w-24 mx-auto my-5" />
         <h2 class="text-2xl font-semibold text-[#002C5C]">No Jobs Available</h2>
-        <p class="text-gray-500">Check back soon for new job opportunities</p>
+        <p class="text-gray-500 lg:text-base text-sm">Check back soon for new job opportunities</p>
       </div>
     `;
     return;
@@ -257,7 +257,7 @@ function renderInterview() {
   }
 }
 
-// Render Rejected cards
+// Render Rejected 
 function renderRejected() {
   filterSection.innerHTML = "";
 
@@ -266,7 +266,7 @@ function renderRejected() {
       <div class="text-center py-18 border border-gray-200 rounded-lg">
         <img src="jobs.png" alt="No Jobs" class="w-24 mx-auto my-5" />
         <h2 class="text-2xl font-semibold text-[#002C5C]">No Jobs Available</h2>
-        <p class="text-gray-500">Check back soon for new job opportunities</p>
+        <p class="text-gray-500 lg:text-base text-sm">Check back soon for new job opportunities</p>
       </div>
     `;
     return;
