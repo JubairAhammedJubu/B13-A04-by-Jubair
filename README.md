@@ -1,8 +1,3 @@
-Here is your content formatted in **README.md format** (Markdown).
-You can copy and paste directly into your README file without changing the text.
-
----
-
 # JavaScript DOM & Events – Questions and Answers
 
 ---
