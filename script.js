@@ -44,7 +44,6 @@ function calculateCount() {
 
 calculateCount();
 
-
 function toggleStyle(id) {
   // Reset buttons
   allFilterBtn.classList.add("bg-white", "text-black", "hover:text-blue-600");
@@ -71,7 +70,6 @@ function toggleStyle(id) {
   selected.classList.remove("bg-white", "text-black", "hover:text-blue-600");
   selected.classList.add("bg-blue-500", "text-white");
 
- 
   if (id === "interview-filter-btn") {
     allCardSection.classList.add("hidden");
     filterSection.classList.remove("hidden");
@@ -85,7 +83,6 @@ function toggleStyle(id) {
     renderRejected();
   }
 }
-
 
 mainContainer.addEventListener("click", function (event) {
   // Interview
@@ -103,7 +100,11 @@ mainContainer.addEventListener("click", function (event) {
       statusButton.classList.add("bg-emerald-500", "text-white");
     }
 
-    const [location, jobType, salary] = timesalary.split(" • ");
+    
+    
+    const parts = timesalary.split("•").map((item) => item.trim());
+    const [location, jobType, salary] = parts;
+    
 
     const jobInfo = {
       companyName,
@@ -114,8 +115,9 @@ mainContainer.addEventListener("click", function (event) {
       status: "Interview",
       details,
     };
+    console.log(jobInfo);
+    
 
- 
     const jobExist = interviewList.find(
       (item) => item.companyName === jobInfo.companyName,
     );
@@ -123,7 +125,6 @@ mainContainer.addEventListener("click", function (event) {
       interviewList.push(jobInfo);
     }
 
- 
     rejectedList = rejectedList.filter(
       (item) => item.companyName !== jobInfo.companyName,
     );
@@ -136,7 +137,7 @@ mainContainer.addEventListener("click", function (event) {
     calculateCount();
   }
 
-  // Rejected button 
+  // Rejected button clicked
   else if (event.target.classList.contains("rejected-btn")) {
     const card = event.target.closest(".card");
 
@@ -151,7 +152,8 @@ mainContainer.addEventListener("click", function (event) {
       statusButton.classList.add("bg-red-500", "text-white");
     }
 
-    const [location, jobType, salary] = timesalary.split(" • ");
+    const parts = timesalary.split("•").map((item) => item.trim());
+    const [location, jobType, salary] = parts;
 
     const jobInfo = {
       companyName,
@@ -162,7 +164,8 @@ mainContainer.addEventListener("click", function (event) {
       status: "Rejected",
       details,
     };
-
+    console.log(jobInfo);
+    
 
     const jobExist = rejectedList.find(
       (item) => item.companyName === jobInfo.companyName,
@@ -171,11 +174,9 @@ mainContainer.addEventListener("click", function (event) {
       rejectedList.push(jobInfo);
     }
 
-
     interviewList = interviewList.filter(
       (item) => item.companyName !== jobInfo.companyName,
     );
-
 
     if (currentStatus === "interview-filter-btn") {
       renderInterview();
@@ -184,15 +185,13 @@ mainContainer.addEventListener("click", function (event) {
     calculateCount();
   }
 
-  // Delete card 
+  // Delete card
   else if (event.target.closest(".btn-delete")) {
     const card = event.target.closest(".card");
 
     const companyName = card.querySelector(".companyName").innerText;
 
-
     card.remove();
-
 
     interviewList = interviewList.filter(
       (job) => job.companyName !== companyName,
@@ -201,15 +200,12 @@ mainContainer.addEventListener("click", function (event) {
       (job) => job.companyName !== companyName,
     );
 
- 
     if (currentStatus === "interview-filter-btn") renderInterview();
     if (currentStatus === "rejected-filter-btn") renderRejected();
-
 
     calculateCount();
   }
 });
-
 
 function renderInterview() {
   filterSection.innerHTML = "";
@@ -227,16 +223,19 @@ function renderInterview() {
 
   for (let job of interviewList) {
     const div = document.createElement("div");
-    div.className =
-      "card flex justify-between border border-gray-200 p-6 mb-6 rounded-lg";
+    div.className = "card space-y-5 border border-gray-200 p-6 mb-6 rounded-lg";
     div.innerHTML = `
-      <div class="space-y-5">
+      <div class="flex justify-between">
         <div>
           <p class="companyName text-lg text-[#002C5C] font-semibold leading-6">${job.companyName}</p>
           <p class="jobRole mt-1.5 text-slate-500">${job.jobRole}</p>
         </div>
+        <div class="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center">
+        <button class="btn-delete"><i class="fa-regular fa-trash-can text-slate-500 hover:text-red-600"></i></button>
+      </div>
+      </div>
         <div class="text-slate-500">
-          <p class="timesalary">
+          <p class="timesalary flex flex-col lg:flex-row">
             ${job.location} <span class="mx-1.5">•</span> ${job.jobType} <span class="mx-1.5">•</span> ${job.salary}
           </p>
         </div>
@@ -248,16 +247,13 @@ function renderInterview() {
           <button class="interview-btn text-sm font-semibold leading-6 text-emerald-500 h-9 w-25 border border-emerald-500 rounded-sm hover:bg-emerald-100">Interview</button>
           <button class="rejected-btn text-sm font-semibold leading-6 text-red-500 h-9 w-25 border border-red-500 rounded-sm hover:bg-red-100">Rejected</button>
         </div>
-      </div>
-      <div class="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center">
-        <button class="btn-delete"><i class="fa-regular fa-trash-can text-slate-500 hover:text-red-600"></i></button>
-      </div>
+      
     `;
     filterSection.appendChild(div);
   }
 }
 
-// Render Rejected 
+// Render Rejected
 function renderRejected() {
   filterSection.innerHTML = "";
 
@@ -274,16 +270,19 @@ function renderRejected() {
 
   for (let job of rejectedList) {
     const div = document.createElement("div");
-    div.className =
-      "card flex justify-between border border-gray-200 p-6 mb-6 rounded-lg";
+    div.className = "card space-y-5 border border-gray-200 p-6 mb-6 rounded-lg";
     div.innerHTML = `
-      <div class="space-y-5">
+      <div class="flex justify-between">
         <div>
           <p class="companyName text-lg text-[#002C5C] font-semibold leading-6">${job.companyName}</p>
           <p class="jobRole mt-1.5 text-slate-500">${job.jobRole}</p>
         </div>
+        <div class="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center">
+        <button class="btn-delete"><i class="fa-regular fa-trash-can text-slate-500 hover:text-red-600"></i></button>
+        </div>
+      </div>
         <div class="text-slate-500">
-          <p class="timesalary">
+          <p class="timesalary flex flex-col lg:flex-row">
             ${job.location} <span class="mx-1.5">•</span> ${job.jobType} <span class="mx-1.5">•</span> ${job.salary}
           </p>
         </div>
@@ -295,10 +294,6 @@ function renderRejected() {
           <button class="interview-btn text-sm font-semibold leading-6 text-emerald-500 h-9 w-25 border border-emerald-500 rounded-sm hover:bg-emerald-100">Interview</button>
           <button class="rejected-btn text-sm font-semibold leading-6 text-red-500 h-9 w-25 border border-red-500 rounded-sm hover:bg-red-100">Rejected</button>
         </div>
-      </div>
-      <div class="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center">
-        <button class="btn-delete"><i class="fa-regular fa-trash-can text-slate-500 hover:text-red-600"></i></button>
-      </div>
     `;
     filterSection.appendChild(div);
   }
